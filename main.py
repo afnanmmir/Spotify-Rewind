@@ -29,7 +29,7 @@ def home():
     #uuid is given when a new visitor enters the website. If a visitor has already been to the website, they will already have a uuid
     if(not session.get('uuid')):
         session['uuid'] = str(uuid.uuid4())
-    authenticate_manager = spotipy.oauth2.SpotifyOAuth(client_id = '9a47828008a146b999c4dce6c790291e',client_secret = "cb2403fcb6924934a0c3fa6a1115f702",redirect_uri = 'http://127.0.0.1:5000/',scope = 'user-top-read',cache_path = session_cache_path(),show_dialog = True)
+    authenticate_manager = spotipy.oauth2.SpotifyOAuth(client_id = '9a47828008a146b999c4dce6c790291e',client_secret = "cb2403fcb6924934a0c3fa6a1115f702",redirect_uri = 'https://spotify-re.herokuapp.com/',scope = 'user-top-read',cache_path = session_cache_path(),show_dialog = True)
     #This will handle the logging in part. Then it will run the function again and take them to the next page
     if(request.args.get('code')):
         authenticate_manager.get_access_token(request.args.get('code'))
@@ -43,7 +43,7 @@ def home():
 def short_term():    
     if(session.get('uuid') is None):
         return redirect("/")
-    auth_manage = spotipy.oauth2.SpotifyOAuth(client_id = '9a47828008a146b999c4dce6c790291e',client_secret = "cb2403fcb6924934a0c3fa6a1115f702",redirect_uri = 'http://127.0.0.1:5000/',scope = 'user-top-read',cache_path = session_cache_path(),show_dialog = True)
+    auth_manage = spotipy.oauth2.SpotifyOAuth(client_id = '9a47828008a146b999c4dce6c790291e',client_secret = "cb2403fcb6924934a0c3fa6a1115f702",redirect_uri = 'https://spotify-re.herokuapp.com/',scope = 'user-top-read',cache_path = session_cache_path(),show_dialog = True)
     if(not auth_manage.get_cached_token()):
         return redirect("/")
     spotify = spotipy.Spotify(auth_manager=auth_manage)
@@ -56,7 +56,7 @@ def short_term():
 def medium_term():    
     if(session.get('uuid') is None):
         return redirect("/")
-    auth_manage = spotipy.oauth2.SpotifyOAuth(client_id = '9a47828008a146b999c4dce6c790291e',client_secret = "cb2403fcb6924934a0c3fa6a1115f702",redirect_uri = 'http://127.0.0.1:5000/',scope = 'user-top-read',cache_path = session_cache_path(),show_dialog = True)
+    auth_manage = spotipy.oauth2.SpotifyOAuth(client_id = '9a47828008a146b999c4dce6c790291e',client_secret = "cb2403fcb6924934a0c3fa6a1115f702",redirect_uri = 'https://spotify-re.herokuapp.com/',scope = 'user-top-read',cache_path = session_cache_path(),show_dialog = True)
     if(not auth_manage.get_cached_token()):
         return redirect("/")
     spotify = spotipy.Spotify(auth_manager=auth_manage)
@@ -69,7 +69,7 @@ def medium_term():
 def long_term():    
     if(session.get('uuid') is None):
         return redirect("/")
-    auth_manage = spotipy.oauth2.SpotifyOAuth(client_id = '9a47828008a146b999c4dce6c790291e',client_secret = "cb2403fcb6924934a0c3fa6a1115f702",redirect_uri = 'http://127.0.0.1:5000/',scope = 'user-top-read',cache_path = session_cache_path(),show_dialog = True)
+    auth_manage = spotipy.oauth2.SpotifyOAuth(client_id = '9a47828008a146b999c4dce6c790291e',client_secret = "cb2403fcb6924934a0c3fa6a1115f702",redirect_uri = 'https://spotify-re.herokuapp.com/',scope = 'user-top-read',cache_path = session_cache_path(),show_dialog = True)
     if(not auth_manage.get_cached_token()):
         return redirect("/")
     spotify = spotipy.Spotify(auth_manager=auth_manage)
@@ -80,7 +80,7 @@ def long_term():
     return render_template("test.html", results = results['items'],songs = songs['items'],avg = weighted,songavg = songavg, timeFrame = "All time")
 @app.route("/index")
 def test():
-    auth_manage = spotipy.oauth2.SpotifyOAuth(client_id = '9a47828008a146b999c4dce6c790291e',client_secret = "cb2403fcb6924934a0c3fa6a1115f702",redirect_uri = 'http://127.0.0.1:5000/',scope = 'user-top-read',cache_path = session_cache_path(),show_dialog = True)
+    auth_manage = spotipy.oauth2.SpotifyOAuth(client_id = '9a47828008a146b999c4dce6c790291e',client_secret = "cb2403fcb6924934a0c3fa6a1115f702",redirect_uri = 'https://spotify-re.herokuapp.com/',scope = 'user-top-read',cache_path = session_cache_path(),show_dialog = True)
     if(not auth_manage.get_cached_token()):
         return redirect("/")
     spotify = spotipy.Spotify(auth_manager=auth_manage)
