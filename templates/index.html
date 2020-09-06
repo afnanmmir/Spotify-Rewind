@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+    <title>Spotify Popularity Score</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Spotify Popularity Score</a>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container">
+        <main role="main" class="pb-3">
+            <div>
+                <div class="jumbotron text-center">
+                    <p>Your top 15 artists' popularity score:</p>
+                    <h1>{{ weighted }}</h1>
+                    <p style = "font-size: 11px; color: rgb(100,110,100); padding: 8px;">The closer your score is to 100, the more popular the artists you listen to are!</p>
+                </div>
+                <ul class="nav nav-pills nav-justified">
+                    <li><a href="{{ url_for('short_term') }}">Last 4 weeks</a></li>
+                    <li><a href="{{ url_for('medium_term') }}">Last 6 months</a></li>
+                    <li><a href="{{ url_for('long_term') }}">All time</a></li>
+                </ul>
+                <h2>Your Top Artists ({{ timeFrame }}) </h2>
+                <div class="top-list">
+                    <table>
+                        <tr>
+                            <td style="vertical-align: middle;"></td>
+                            <td><strong></strong></td>
+                            <td class="space"></td>
+                            <td><img></td>
+                            <td class="space"></td>
+                            <td class="track-detail"><u>Artist</u></td>
+                            <td class="track-detail"><u>Popularity Score</u></td>
+                        </tr>
+                        {% for artist in artists %}
+                        <tr>
+                            <td style="vertical-align: middle;">
+                            </td>
+                            <td><strong>{{ loop.index }}</strong></td>
+                            <td class="space"></td>
+                            <td><img src="{{ artist['images'][0]['url'] }}" loading="lazy" class="song-image"></td>
+                            <td class="space"></td>
+                            <td class="track-detail">{{ artist['name'] }}</td>
+                            <td class="track-detail">{{ artist['popularity'] }}</td>
+                        </tr>
+                        
+
+                        {% endfor %}
+                    </table>
+            </div>
+        </main>
+</div>
+</body>
+<footer class="container-fluid text-center">
+    <p style = "color: rgb(100,100,100)">Afnan Mir ©</p>
+</footer>
+</html>
