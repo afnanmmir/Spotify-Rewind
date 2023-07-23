@@ -20,4 +20,4 @@ COPY . .
 # Expose port
 EXPOSE 8000
 
-CMD exec gunicorn --bind :8000 --workers 1 --threads 8 --timeout 0 app:'create_app()'
+CMD exec gunicorn --bind :8000 --workers 1 --threads 8 --timeout 0 main:'create_app()'
