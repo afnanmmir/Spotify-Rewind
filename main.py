@@ -13,6 +13,8 @@ def create_app():
     load_dotenv()
     SPOTIFY_CLIENT_ID = os.getenv("CLIENT_ID")
     SPOTIFY_CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+    print(f"CLIENT ID: {SPOTIFY_CLIENT_ID}")
+    print(f"CLIENT SECRET: {SPOTIFY_CLIENT_SECRET}")
 
     caches_folder = './.spotify_caches/'
     if not os.path.exists(caches_folder):
